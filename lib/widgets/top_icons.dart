@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sticky_widgets/flutter_sticky_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yookatale/widgets/custom_button.dart';
 
@@ -71,15 +72,17 @@ class _TopIconsState extends State<TopIcons> {
           ),
         ),
         if (isSliderMenuOpen)
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              color: Colors.black,
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height,
-              // isSliderMenuOpen ? MediaQuery.of(context).size.height : 60,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          StickyContainer(
+            stickyChildren: [],
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Container(
+                color: Colors.black,
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height,
+                // isSliderMenuOpen ? MediaQuery.of(context).size.height : 60,
+                // child: BackdropFilter(
+                //   filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -112,8 +115,6 @@ class _TopIconsState extends State<TopIcons> {
                       ),
                     ),
                     Container(
-                      height: 50,
-                      width: 150,
                       margin: const EdgeInsets.only(left: 56),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
@@ -122,14 +123,33 @@ class _TopIconsState extends State<TopIcons> {
                         onPressed: () {},
                         icon: const FaIcon(
                           FontAwesomeIcons.whatsapp,
+                          size: 20,
                           color: Colors.white,
                         ),
                         title: 'Quick Order',
                       ),
                     ),
+                    const SizedBox(height: 50),
+                    Container(
+                      margin: const EdgeInsets.only(left: 56),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: CustomButton(
+                        width: 130,
+                        onPressed: () {},
+                        icon: const FaIcon(
+                          FontAwesomeIcons.arrowRightToBracket,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                        title: 'Sign In',
+                      ),
+                    ),
                   ],
                 ),
               ),
+              // ),
             ),
           ),
       ],
