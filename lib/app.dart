@@ -58,13 +58,8 @@ class _AppState extends ConsumerState<App> {
         // Todo: Make the SliderMenu close when user tabs outside the slider
       },
       child: Scaffold(
-        body: Stack(
-          children: [
-            BaseWidget(
-              child: HomePage(),
-            ),
-            isVisible ? SliderMenu() : const SizedBox.shrink(),
-          ],
+        body: BaseWidget(
+          child: HomePage(),
         ),
       ),
     );

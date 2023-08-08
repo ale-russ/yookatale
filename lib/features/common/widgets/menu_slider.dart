@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yookatale/features/authentication/login.dart';
+import 'package:yookatale/features/authentication/widgets/login.dart';
 
 import '../controller/quick_order_controller.dart';
 import '../notifiers/menu_notifier.dart';

@@ -46,7 +46,7 @@ class SearchBar extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(top: 0.0),
                 child: Icon(
                   Icons.search_sharp,
                   color: Colors.white,
@@ -55,7 +55,7 @@ class SearchBar extends ConsumerWidget {
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: TextField(
+                child: TextFormField(
                   focusNode: focusNode,
                   onTap: () {
                     focusController.focusNode = focusNode;
@@ -63,6 +63,7 @@ class SearchBar extends ConsumerWidget {
                     log('focusNode: ${focusController.focusNode}');
                     if (isVisible) focusController.closeSliderMenu(ref);
                   },
+                  textAlignVertical: TextAlignVertical.bottom,
                   controller: controller,
                   style: const TextStyle(color: Colors.white),
                   cursorColor: Colors.white,
