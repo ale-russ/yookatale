@@ -33,6 +33,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           background: const Color.fromRGBO(0, 0, 0, 0.5),
           seedColor: const Color.fromARGB(99, 3, 39, 14),
+          // outline: Color.fromARGB(255, 35, 57, 75),
+          outline: const Color.fromARGB(255, 36, 46, 65),
         ),
         useMaterial3: true,
       ),
