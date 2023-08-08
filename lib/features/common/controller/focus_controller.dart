@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../menu_notifier.dart';
+import '../notifiers/menu_notifier.dart';
 
 class FocusController {
   bool isKeyboardVisible = false;

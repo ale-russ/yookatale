@@ -4,8 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '/features/controller/focus_controller.dart';
-import '../menu_notifier.dart';
+import '../controller/focus_controller.dart';
+import '../notifiers/menu_notifier.dart';
 
 // ignore: non_constant_identifier_names
 PreferredSizeWidget? CustomAppBar(BuildContext context) {

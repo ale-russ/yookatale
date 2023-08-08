@@ -4,10 +4,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yookatale/features/authentication/login.dart';
 
-import '/features/controller/quick_order_controller.dart';
-import '../controller/focus_controller.dart';
-import '../menu_notifier.dart';
+import '../controller/quick_order_controller.dart';
+import '../notifiers/menu_notifier.dart';
 import 'custom_button.dart';
 
 class SliderMenu extends ConsumerWidget {
@@ -91,7 +91,13 @@ class SliderMenu extends ConsumerWidget {
                   ),
                   child: CustomButton(
                     width: 130,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LoginPage()));
+                      ref
+                          .read(visibilityProvider.notifier)
+                          .toggleVisibility(value: false);
+                    },
                     icon: const FaIcon(
                       FontAwesomeIcons.arrowRightToBracket,
                       size: 20,

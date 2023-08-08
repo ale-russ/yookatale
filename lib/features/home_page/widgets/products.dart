@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../models/products_model.dart';
-import 'custom_button.dart';
+import '../../common/models/products_model.dart';
+import '../../common/widgets/custom_button.dart';
 
 class ProductsPage extends ConsumerWidget {
   ProductsPage({super.key, this.productProvider, this.title});

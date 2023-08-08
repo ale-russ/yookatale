@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '/features/widgets/custom_button.dart';
+import '../../common/widgets/custom_button.dart';
 
 class RegisterWidget extends ConsumerWidget {
   const RegisterWidget({super.key});
