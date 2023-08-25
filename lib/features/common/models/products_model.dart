@@ -31,12 +31,14 @@ class PopularDetails {
   String image;
   String title;
   String price;
+  String? per;
 
   PopularDetails({
     required this.id,
     required this.image,
     required this.title,
     required this.price,
+    this.per = '',
   });
 
   factory PopularDetails.fromJson(Map<String, dynamic> json) => PopularDetails(
@@ -44,6 +46,7 @@ class PopularDetails {
         image: json["image"],
         title: json["title"],
         price: json["price"],
+        per: json["per"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,5 +54,6 @@ class PopularDetails {
         "image": image,
         "title": title,
         "price": price,
+        "per": per,
       };
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:yookatale/features/products/widgets/view_products_page.dart';
 
 import '../../common/widgets/custom_button.dart';
 
@@ -28,7 +29,13 @@ class Motto extends StatelessWidget {
               leftLabel: 'Living better while', rightLabel: 'saving money'),
           const SizedBox(height: 50),
           CustomButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ViewProductsPage(),
+                  ));
+            },
             title: 'View Products',
           ),
           const SizedBox(height: 50),

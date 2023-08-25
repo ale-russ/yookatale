@@ -6,8 +6,8 @@ import '../../common/models/products_model.dart';
 
 class ProductService {
   static Future<Products> fetchProducts({String? url}) async {
+    log('Url: $url');
     final jsonString = await rootBundle.loadString(url!);
-    // await rootBundle.loadString('assets/popular_products.json');
     final data = jsonDecode(jsonString);
     return Products.fromJson(data);
   }

@@ -2,11 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yookatale/features/common/widgets/base_widget.dart';
 
+import 'features/common/responsive.dart';
+import 'features/common/widgets/base_widget.dart';
 import 'features/common/notifiers/menu_notifier.dart';
-
-import 'features/common/widgets/menu_slider.dart';
+import 'features/desktop_view/widgets/main_area.dart';
+import 'features/desktop_view/widgets/dashboard_menus.dart';
+import 'features/desktop_view/widgets/desktop_appbar.dart';
 import 'features/home_page/widgets/home_page.dart';
 
 class App extends ConsumerStatefulWidget {
@@ -58,10 +60,36 @@ class _AppState extends ConsumerState<App> {
         // Todo: Make the SliderMenu close when user tabs outside the slider
       },
       child: Scaffold(
-        body: BaseWidget(
-          child: HomePage(),
+        body: Responsive(
+          mobile: const DesktopView(),
+          // BaseWidget(
+          //   child: HomePage(),
+          // ),
+          tablet: const DesktopView(),
+          desktop: const DesktopView(),
         ),
       ),
     );
+  }
+}
+
+class DesktopView extends ConsumerWidget {
+  const DesktopView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      appBar: DesktopAppBar(context),
+      body: Container(
+        color: Colors.white,
+        child: Row(
+          children: [
+            DashboardMenus(),
+            const Expanded(child: MainArea()),
+          ],
+        ),
+      ),
+    );
+    ;
   }
 }

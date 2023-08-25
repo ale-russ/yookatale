@@ -12,3 +12,13 @@ final fruitProvider = FutureProvider.autoDispose<Products>(
   (ref) async =>
       await ProductService.fetchProducts(url: 'assets/fruit_products.json'),
 );
+
+final categoriesProvider = FutureProvider.autoDispose<Products>(
+  (ref) async =>
+      await ProductService.fetchProducts(url: 'assets/categories.json'),
+);
+
+final desktopPopular = FutureProvider.autoDispose<Products>(
+  (ref) async =>
+      await ProductService.fetchProducts(url: 'assets/desktop_popular.json'),
+);
