@@ -70,99 +70,108 @@ class _OrderListCardState extends State<OrderListCard> {
   int items = 0;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            image: DecorationImage(
-                image: AssetImage('assets/${widget.imageUrl}'),
-                fit: BoxFit.cover),
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xffe6f5f0),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.itemName,
-                style: const TextStyle(color: Colors.black),
-              ),
-              SizedBox(
-                width: 140,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Weight ${widget.itemWeight} ',
-                      style: const TextStyle(
-                        // fontFamily: 'Cabin',
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
-                    ),
-                    Text(
-                      '${widget.itemPrice} ugx',
-                      style: const TextStyle(
-                        fontFamily: 'Cabin',
-                        color: Colors.green,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      if (items > 0) {
-                        setState(() {
-                          items -= 1;
-                        });
-                      } else {
-                        setState(() {
-                          items = 0;
-                        });
-                      }
-                    },
-                    child: const FaIcon(
-                      FontAwesomeIcons.circleMinus,
-                      color: Colors.green,
-                      size: 15,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    '$items',
-                    style: const TextStyle(
-                        color: Colors.green, fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(width: 4),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        items += 1;
-                      });
-                    },
-                    child: const FaIcon(
-                      FontAwesomeIcons.circlePlus,
-                      color: Colors.green,
-                      size: 15,
-                    ),
-                  )
-                ],
-              )
-            ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage('assets/${widget.imageUrl}'),
+                  fit: BoxFit.cover),
+            ),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.itemName,
+                  style: const TextStyle(color: Colors.black),
+                ),
+                SizedBox(
+                  width: 140,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Weight ${widget.itemWeight} ',
+                        style: const TextStyle(
+                          // fontFamily: 'Cabin',
+                          color: Colors.black,
+                          fontSize: 10,
+                        ),
+                      ),
+                      Text(
+                        '${widget.itemPrice} ugx',
+                        style: const TextStyle(
+                          fontFamily: 'Cabin',
+                          color: Colors.green,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        if (items > 0) {
+                          setState(() {
+                            items -= 1;
+                          });
+                        } else {
+                          setState(() {
+                            items = 0;
+                          });
+                        }
+                      },
+                      child: const FaIcon(
+                        FontAwesomeIcons.circleMinus,
+                        color: Colors.green,
+                        size: 15,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      '$items',
+                      style: const TextStyle(
+                          color: Colors.green, fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(width: 4),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          items += 1;
+                        });
+                      },
+                      child: const FaIcon(
+                        FontAwesomeIcons.circlePlus,
+                        color: Colors.green,
+                        size: 15,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

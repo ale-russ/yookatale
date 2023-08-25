@@ -21,7 +21,8 @@ PreferredSizeWidget? DesktopAppBar(BuildContext context) {
               decoration: BoxDecoration(
                 border: Border.all(color: const Color(0XFFd6eadf)),
               ),
-              width: Get.width * 0.249,
+              // width: Get.width * 0.249,
+              width: 250,
               height: Get.height,
               child: Center(
                   child: Image.asset(

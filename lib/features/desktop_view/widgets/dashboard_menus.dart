@@ -1,5 +1,7 @@
+import 'dart:developer';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -29,7 +31,7 @@ class DashboardMenus extends StatelessWidget {
     Icons.trolley,
     FontAwesomeIcons.solidCommentDots,
     Icons.account_balance_wallet_outlined,
-    FontAwesomeIcons.cube,
+    CupertinoIcons.cube_fill,
     FontAwesomeIcons.gear,
   ];
 
@@ -39,7 +41,8 @@ class DashboardMenus extends StatelessWidget {
       filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 0.0),
       child: Container(
         height: Get.height,
-        width: Get.width * 0.25,
+        // width: Get.width * 0.25,
+        width: 250,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 16,
@@ -114,16 +117,22 @@ class MenuIconTile extends StatefulWidget {
 class _MenuIconTileState extends State<MenuIconTile> {
   Color? color = Colors.transparent;
   bool isSelected = false;
-  int prevSelectedIndex = -1;
-  int currentSelectedIndex = -1;
+
+  int currentSelectedIndex = 0;
+  int? previousSelectedIndex;
 
   @override
   Widget build(BuildContext context) {
+    log('currentIndex: $currentSelectedIndex, previousSelectedIndex $previousSelectedIndex');
     return GestureDetector(
       onTap: () {
         setState(() {
+          // previousSelectedIndex = currentSelectedIndex;
+          // currentSelectedIndex = widget.index;
           isSelected = !isSelected;
         });
+
+        // log('currentIndex: $currentSelectedIndex, previousSelectedIndex $previousSelectedIndex');
       },
       child: Container(
         alignment: Alignment.center,
