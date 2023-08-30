@@ -8,12 +8,16 @@ class AuthForm extends StatelessWidget {
     this.onSaved,
     this.hintText,
     required this.label,
+    required this.controller,
+    this.onFieldSubmitted,
   });
 
   String? Function(String?)? validator;
   void Function(String?)? onSaved;
   String? hintText;
   String label;
+  TextEditingController controller;
+  void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,11 @@ class AuthForm extends StatelessWidget {
             validator: validator,
             textAlignVertical: TextAlignVertical.bottom,
             cursorColor: Colors.black,
+            style: const TextStyle(
+              color: Color(0XFFA0AEC0),
+            ),
+            onFieldSubmitted: onFieldSubmitted,
+            onSaved: onSaved,
             decoration: InputDecoration(
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(

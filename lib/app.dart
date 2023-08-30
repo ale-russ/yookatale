@@ -12,7 +12,8 @@ import 'features/desktop_view/widgets/desktop_appbar.dart';
 import 'features/home_page/widgets/home_page.dart';
 
 class App extends ConsumerStatefulWidget {
-  const App({super.key});
+  App({super.key, this.uid});
+  String? uid;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AppState();
@@ -52,6 +53,7 @@ class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     var isVisible = ref.watch(visibilityProvider);
+    log('UserId:  ${widget.uid}');
 
     return GestureDetector(
       onTap: () {},
@@ -61,10 +63,11 @@ class _AppState extends ConsumerState<App> {
       },
       child: Scaffold(
         body: Responsive(
-          mobile: const DesktopView(),
-          // BaseWidget(
-          //   child: HomePage(),
-          // ),
+          mobile:
+              // DesktopView(),
+              BaseWidget(
+            child: HomePage(),
+          ),
           tablet: const DesktopView(),
           desktop: const DesktopView(),
         ),
@@ -79,7 +82,7 @@ class DesktopView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: DesktopAppBar(context),
+      appBar: DesktopAppBar(context, false),
       body: Container(
         color: Colors.white,
         child: Row(

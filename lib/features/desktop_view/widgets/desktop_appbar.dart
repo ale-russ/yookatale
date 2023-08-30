@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 
 import '../../common/widgets/appbar_icons.dart';
 
-PreferredSizeWidget? DesktopAppBar(BuildContext context) {
+PreferredSizeWidget? DesktopAppBar(BuildContext context, bool hasLeading) {
   return PreferredSize(
     preferredSize: Size(MediaQuery.of(context).size.width, 130),
     child: AppBar(
+      automaticallyImplyLeading: hasLeading,
       titleSpacing: 0,
       toolbarHeight: 130,
       backgroundColor: Colors.white,
@@ -47,7 +48,8 @@ PreferredSizeWidget? DesktopAppBar(BuildContext context) {
                   children: [
                     Container(
                       height: 40,
-                      width: 350,
+                      // width: 350,
+                      constraints: const BoxConstraints(maxWidth: 350),
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextFormField(
                         onTap: () {},
@@ -87,8 +89,12 @@ PreferredSizeWidget? DesktopAppBar(BuildContext context) {
                       children: [
                         const AppBarIcons(),
                         Container(
-                          width: 80,
-                          height: 80,
+                          // width: 80,
+                          // height: 80,
+                          constraints: const BoxConstraints(
+                            maxHeight: 80,
+                            maxWidth: 80,
+                          ),
                           margin: const EdgeInsets.only(right: 16),
                           decoration: BoxDecoration(
                             image: const DecorationImage(

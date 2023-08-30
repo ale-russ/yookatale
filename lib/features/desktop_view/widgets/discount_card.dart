@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yookatale/features/payment/widgets/flutter_wave.dart';
 
 class DiscountCard extends StatelessWidget {
   const DiscountCard({
@@ -38,7 +39,14 @@ class DiscountCard extends StatelessWidget {
               children: [
                 const DiscountInfoTile(),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const FlutterWavePage(title: 'Payment Page')),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white.withOpacity(0.8),
                     padding: EdgeInsets.zero,

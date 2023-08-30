@@ -35,10 +35,20 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   bool agreeTerms = false;
   DateTime? bod;
 
+  TextEditingController? firstNameController = TextEditingController();
+  TextEditingController? lastNameController = TextEditingController();
+  TextEditingController? emailController = TextEditingController();
+  TextEditingController? passwordController = TextEditingController();
+  TextEditingController? phoneNumberController = TextEditingController();
+  // TextEditingController? passwordController;
+  // TextEditingController? passwordController;
+  // TextEditingController? passwordController;
+
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
         child: Container(
+      width: 500,
       height: MediaQuery.of(context).size.height,
       child: Column(
         children: [
@@ -53,6 +63,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   AuthForm(
                     label: 'Firstname',
                     hintText: 'firstname is required',
+                    controller: firstNameController!,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password is required';
@@ -67,6 +78,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   AuthForm(
                     label: 'Lastname',
                     hintText: 'lastname is required',
+                    controller: lastNameController!,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password is required';
@@ -81,6 +93,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   AuthForm(
                     label: 'Phone Number',
                     hintText: 'include country code [+256...]',
+                    controller: phoneNumberController!,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password is required';
@@ -154,6 +167,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   AuthForm(
                     label: 'Email *',
                     hintText: 'email is required',
+                    controller: emailController!,
                     validator: (value) {
                       final emailRegExp =
                           RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
@@ -165,7 +179,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       return null;
                     },
                     onSaved: (value) {
-                      email = value!;
+                      setState(() {
+                        email = value!;
+                        log('email: $email');
+                      });
                     },
                   ),
                   const SizedBox(height: 16),
@@ -186,6 +203,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                   AuthForm(
                     label: 'Password *',
                     hintText: 'password is required',
+                    controller: passwordController!,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password is required';
@@ -193,7 +211,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       return null;
                     },
                     onSaved: (value) {
-                      password = value!;
+                      setState(() {
+                        password = value!;
+                        log('password: $password');
+                      });
                     },
                   ),
                   Row(
@@ -295,7 +316,8 @@ class _DatePickerState extends State<DatePicker> {
         children: [
           SizedBox(
             height: 40,
-            width: MediaQuery.of(context).size.width * 0.82,
+            width: 435,
+            // width: MediaQuery.of(context).size.width * 0.82,
             child: TextFormField(
               textAlignVertical: TextAlignVertical.center,
               enabled: false,
