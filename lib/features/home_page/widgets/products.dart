@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common/models/products_model.dart';
 import '../../common/widgets/custom_button.dart';
+import '../../payment/widgets/flutter_wave.dart';
 
 class ProductsPage extends ConsumerWidget {
   ProductsPage({super.key, this.productProvider, this.title});
@@ -106,7 +107,16 @@ class ProductsPage extends ConsumerWidget {
                               const SizedBox(height: 16),
                               CustomButton(
                                 width: 170,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const FlutterWavePage(
+                                              title: 'Payment Page'),
+                                    ),
+                                  );
+                                },
                                 title: 'Add To cart',
                                 icon: const FaIcon(
                                   FontAwesomeIcons.cartPlus,

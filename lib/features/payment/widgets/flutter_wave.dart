@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwave_standard/flutterwave.dart';
-import 'package:flutterwave_standard/models/requests/customer.dart';
 import 'package:uuid/uuid.dart';
+import '/features/common/widgets/custom_button.dart';
+import '/main.dart';
 
 import '../models/user_model.dart';
 
@@ -39,7 +40,7 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
   @override
   void initState() {
     super.initState();
-    fetchUserCollection();
+    // fetchUserCollection();
   }
 
   Future<List<User>> fetchUserCollection() async {
@@ -47,7 +48,7 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
 
     try {
       QuerySnapshot userCollection =
-          await FirebaseFirestore.instance.collection('user').get();
+          await FirebaseFirestore.instance.collection('users').get();
 
       List<QueryDocumentSnapshot> userDocs = userCollection.docs;
       log('userDocs ${userDocs.first.data()}');
@@ -59,6 +60,7 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
           phoneNumber: userData['phoneNumber'] ?? '',
           email: userData['email'] ?? '',
         );
+
         users.add(user);
         displayName = user.displayName;
         userEmail = user.email;
@@ -68,8 +70,9 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
       }
 
       return users;
-    } catch (e) {
-      log('Error fetching user collection: $e');
+    } catch (err) {
+      log('Error fetching user collection: $err');
+
       return [];
     }
   }
@@ -84,12 +87,20 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      backgroundColor: Colors.white,
+
+      backgroundColor: const Color(0Xffefefef),
       body: Center(
         child: Container(
           // width: double.infinity,
-          width: 302,
+          width: 450,
+          height: 700,
           margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: Form(
             key: formKey,
             child: ListView(
@@ -101,7 +112,24 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.black),
-                    decoration: const InputDecoration(hintText: "Amount"),
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(61, 60, 60, 0.2),
+                        ),
+                      ),
+                      hintText: 'Amount',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Color(0XFFA0AEC0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 34, 104, 235)),
+                      ),
+                    ),
                     validator: (value) => value != null && value.isNotEmpty
                         ? null
                         : "Amount is required",
@@ -116,7 +144,22 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     readOnly: true,
                     onTap: _openBottomSheet,
                     decoration: const InputDecoration(
-                      hintText: "Currency",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(61, 60, 60, 0.2),
+                        ),
+                      ),
+                      hintText: 'Currency',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Color(0XFFA0AEC0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 34, 104, 235)),
+                      ),
                     ),
                     validator: (value) => value != null && value.isNotEmpty
                         ? null
@@ -131,7 +174,22 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     style: const TextStyle(color: Colors.black),
                     obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: "Public Key",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(61, 60, 60, 0.2),
+                        ),
+                      ),
+                      hintText: 'Public Key',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Color(0XFFA0AEC0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 34, 104, 235)),
+                      ),
                     ),
                   ),
                 ),
@@ -143,7 +201,22 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     style: const TextStyle(color: Colors.black),
                     obscureText: true,
                     decoration: const InputDecoration(
-                      hintText: "Encryption Key",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(61, 60, 60, 0.2),
+                        ),
+                      ),
+                      hintText: 'Encryption Key',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Color(0XFFA0AEC0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 34, 104, 235)),
+                      ),
                     ),
                   ),
                 ),
@@ -154,7 +227,22 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     textInputAction: TextInputAction.next,
                     style: const TextStyle(color: Colors.black),
                     decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(61, 60, 60, 0.2),
+                        ),
+                      ),
                       hintText: userEmail,
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Color(0XFFA0AEC0),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 34, 104, 235)),
+                      ),
                     ),
                   ),
                 ),
@@ -165,7 +253,22 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     textInputAction: TextInputAction.next,
                     style: const TextStyle(color: Colors.black),
                     decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(61, 60, 60, 0.2),
+                        ),
+                      ),
                       hintText: userNumber,
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Color(0XFFA0AEC0),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 34, 104, 235)),
+                      ),
                     ),
                   ),
                 ),
@@ -186,17 +289,14 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
                     ],
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                  child: ElevatedButton(
-                    onPressed: _onPressed,
-                    child: const Text(
-                      "Make Payment",
-                      style: TextStyle(color: Colors.green
-                          // color: Colors.white
-                          ),
+                Center(
+                  child: Container(
+                    // width: double.infinity,
+                    height: 50,
+                    margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+                    child: CustomButton(
+                      onPressed: _onPressed,
+                      title: 'Make Payment',
                     ),
                   ),
                 )
@@ -222,21 +322,49 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
       phoneNumber: userNumber!,
     );
 
-    final Flutterwave flutterwave = Flutterwave(
-      context: context,
-      publicKey: 'FLWPUBK_TEST-07d1b505448d1358e34d597736dd6b8a-X',
-      currency: selectedCurrency,
-      redirectUrl: 'https://facebook.com',
-      txRef: const Uuid().v1(),
-      amount: amountController.text.toString().trim(),
-      customer: customer,
-      paymentOptions: "card, payattitude, barter, bank transfer, ussd, visa",
-      customization: Customization(title: "Test Payment"),
-      isTestMode: true,
-    );
-    final ChargeResponse response = await flutterwave.charge();
-    showLoading(response.toString());
-    log("${response.toJson()}");
+    try {
+      final Flutterwave flutterwave = Flutterwave(
+        context: context,
+        publicKey: 'FLWPUBK_TEST-07d1b505448d1358e34d597736dd6b8a-X',
+        currency: selectedCurrency,
+        redirectUrl: 'https://facebook.com',
+        txRef: const Uuid().v1(),
+        amount: amountController.text.toString().trim(),
+        customer: customer,
+        paymentOptions: "card, payattitude, barter, bank transfer, ussd, visa",
+        customization: Customization(title: "Test Payment"),
+        isTestMode: true,
+      );
+      final ChargeResponse response = await flutterwave.charge();
+      showLoading(response.toString());
+      log("${response.toJson()}");
+      analytics!.logEvent(
+        name: 'purchase',
+        parameters: {
+          'currency': currencyController.text.trim(),
+          'value': double.tryParse(amountController.text.trim()),
+          'items': [
+            {
+              'item_id': 'p123',
+              'item_name': 'Product 1',
+              'currency': currencyController.text.trim(),
+              'value': double.tryParse(amountController.text.trim()),
+              'time': DateTime.now(),
+            },
+            // other items
+          ],
+        },
+      );
+    } on Exception catch (err) {
+      log('Error is $err');
+      analytics!.logEvent(
+        name: 'purchase_error',
+        parameters: {
+          'error': err.toString(),
+          'time': DateTime.now(),
+        },
+      );
+    }
   }
 
   String getPublicKey() {
@@ -255,8 +383,12 @@ class _FlutterWavePageState extends State<FlutterWavePage> {
     final currencies = ["NGN", "RWF", "UGX", "KES", "ZAR", "USD", "GHS", "TZS"];
     return Container(
       height: 250,
-      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      color: Colors.white,
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        // border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: ListView(
         children: currencies
             .map((currency) => ListTile(
