@@ -42,3 +42,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android related
+**/android/key.properties
+**/android/key.jks
+android/key.jks
+
+key.jks
+key.properties
+.env
