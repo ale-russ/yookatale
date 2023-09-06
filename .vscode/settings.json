@@ -4,6 +4,7 @@
     "dotenv",
     "firestore",
     "flutterwave",
+    "Geoflutterfire",
     "Raleway",
     "RGBO",
     "riverpod",
