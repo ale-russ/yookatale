@@ -5,6 +5,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:geoflutterfire2/geoflutterfire2.dart';
 
 import '/app.dart';
 import '/features/authentication/providers/auth_provider.dart';
@@ -16,6 +17,7 @@ FirebaseAnalyticsObserver? observer;
 
 late final FirebaseApp app;
 late final FirebaseAuth? auth;
+final geo = GeoFlutterFire();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
